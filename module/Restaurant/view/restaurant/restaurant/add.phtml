@@ -1,0 +1,23 @@
+<?php
+ // module/Restaurant/view/restaurant/restaurant/add.phtml:
+
+ $title = 'Add New Restaurant';
+ $this->headTitle($title);
+ ?>
+ <h1><?php echo $this->escapeHtml($title); ?></h1>
+ <p>
+     <a href="<?php echo $this->url('restaurant', array('action'=>'index'));?>">List of Restaurants</a>
+ </p>
+
+<?php
+ $form->setAttribute('action', $this->url('restaurant', array('action' => 'add')));
+ $form->prepare();
+
+ echo $this->form()->openTag($form);
+ echo $this->formHidden($form->get('id'));
+ echo $this->formRow($form->get('name')).'<br>';
+ echo $this->formRow($form->get('city')).'<br>';
+ echo $this->formRow($form->get('country')).'<br>';
+ echo $this->formRow($form->get('rating'));
+ echo $this->formSubmit($form->get('submit'));
+ echo $this->form()->closeTag();

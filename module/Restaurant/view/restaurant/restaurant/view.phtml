@@ -1,0 +1,24 @@
+<?php
+ // module/Restaurant/view/restaurant/restaurant/view.phtml:
+
+ $title = $restaurant->name.', '.$restaurant->city;
+ $this->headTitle($title);
+ ?>
+ <h1><?php echo $this->escapeHtml($title); ?></h1>
+ <p>
+     <a href="<?php echo $this->url('restaurant');?>">Goto Restaurant List</a>
+ </p>
+
+ <table class="table"><tr>
+     <th>Name</th><td><?php echo $this->escapeHtml($restaurant->name); ?></td>
+ </tr> <tr>
+	 <th>City</th><td><?php echo $this->escapeHtml($restaurant->city);?></td>
+ </tr> <tr>
+	 <th>Country</th><td><?php echo $this->escapeHtml($restaurant->country);?></td>
+ </tr> <tr>
+	 <th>Rating</th><td><?php echo $this->escapeHtml($restaurant->rating);?></td>
+ </tr> <tr>
+	 <th>Comments</th><td>...</td>
+ </tr></table>
+<a href="<?php echo $this->url('restaurant',array('action'=>'edit', 'id' => $restaurant->id));?>" class="btn btn-warning btn-sm">Edit</a>
+<a href="<?php echo $this->url('restaurant',array('action'=>'delete', 'id' => $restaurant->id));?>" class="btn btn-danger btn-sm">Delete</a>

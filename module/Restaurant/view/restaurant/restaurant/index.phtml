@@ -1,0 +1,33 @@
+<?php
+ // module/Restaurant/view/restaurant/restaurant/index.phtml:
+
+ $title = 'Restaurants List';
+ $this->headTitle($title);
+ 
+ function filterUrl($str){
+	 $str=trim(preg_replace('![^a-zA-Z0-0_]+!',' ',$str));
+	 return strtolower(str_replace(' ','-',$str));
+ }
+ ?>
+ <h1><?php echo $this->escapeHtml($title); ?></h1>
+ <p>
+     <a href="<?php echo $this->url('restaurant', array('action'=>'add'));?>">Add new restaurant</a>
+ </p>
+
+ <table class="table">
+ <tr>
+     <th>Name</th><th>City</th><th>Country</th><th>Options</th>
+ </tr>
+ <?php foreach ($restaurants as $restaurant) : ?>
+ <tr>
+     <td><?php echo "<a href=\"".$this->url('restaurant2',array('r_name'=>filterUrl($restaurant->name), 'id' => $restaurant->id))."\">";
+		echo $this->escapeHtml($restaurant->name)."</a>";?></td>
+     <td><?php echo $this->escapeHtml($restaurant->city);?></td>
+     <td><?php echo $this->escapeHtml($restaurant->country);?></td>
+     <td>
+        <a href="<?php echo $this->url('restaurant',array('action'=>'edit', 'id' => $restaurant->id));?>">Edit</a>
+        <a href="<?php echo $this->url('restaurant',array('action'=>'delete', 'id' => $restaurant->id));?>">Delete</a>
+     </td>
+ </tr>
+ <?php endforeach; ?>
+ </table>
